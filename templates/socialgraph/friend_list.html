@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Friend List -{{ block.super }}
+{% endblock %}
+
+{% block main_content %}
+    {% ifequal list_type "followers" %}
+        <h1>People who you folow: </h1>
+    {% else %}
+        {% ifequal list_type "following" %}
+            <h1>People following You:</h1>
+        {% else %}
+            <h1>People who you follow and follow you:</h1>
+        {% endifequal %}
+    {% endifequal %}
+    {% ifequal friends.count 0 %}
+        <p class="info">No friends listed.</p>
+    {% else %}
+        <ul>
+        	{% for friend in friends %}
+        	    <li>{{ friend.username}}</li>
+            {% endfor %}
+        </ul>
+    {% endifequal %}
+{% endblock %}
