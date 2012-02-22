@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load events_tags %}
+
+
+{% block title %} Tonight - {{ block.super }}{% endblock %}
+
+
+{% block main_content %}
+    <a href="{% url ev_create %}">Create event</a>
+    {% if events %}
+        {% for e in events %}
+            {% event e %}
+        {% endfor %}
+    {% else %}
+    <p>NO events for today. </p>
+    {% endif%}
+{% endblock %}
